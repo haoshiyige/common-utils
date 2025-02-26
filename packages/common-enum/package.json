@@ -1,0 +1,37 @@
+{
+  "name": "@nin/common-enum",
+  "version": "1.0.1",
+  "description": "common toolkit",
+  "main": "index.js",
+  "module": "dist/common-enum.esm-bundler.js",
+  "types": "dist/common-enum.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "buildOptions": {
+    "name": "NinEnum",
+    "compat": true,
+    "formats": [
+      "esm-bundler",
+      "cjs"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs/core.git",
+    "directory": "packages/common-enum"
+  },
+  "keywords": [
+    "nin"
+  ],
+  "author": "花园宝宝",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vuejs/core/issues"
+  },
+  "homepage": "https://github.com/vuejs/core/tree/main/packages/compiler-core#readme",
+  "dependencies": {
+    "@nin/shared": "workspace:^"
+  }
+}

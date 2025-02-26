@@ -1,0 +1,47 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "temp",
+        "sourceMap": false,
+        "target": "es2016",
+        "newLine": "LF",
+        "useDefineForClassFields": false,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "allowJs": false,
+        "strict": true,
+        "noUnusedLocals": true,
+        "experimentalDecorators": true, // 开启装饰器
+        "emitDecoratorMetadata": true, //表示额外生成装饰器的元数据，在某些情况下使用装饰器时
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "removeComments": false,
+        "jsx": "preserve",
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "types": [
+            "vitest/globals",
+            "puppeteer",
+            "node"
+        ],
+        "rootDir": ".",
+        "paths": {
+            "@nin/*": [
+                "packages/*/src/index.ts"
+            ]
+        }
+    },
+    "include": [
+        "packages/global.d.ts",
+        "packages/*/src",
+        "packages/runtime-dom/types/jsx.d.ts",
+        "packages/*/__tests__",
+        "packages/dts-test",
+        "packages/common-utils/*",
+        "scripts/setupVitest.ts"
+    ]
+}

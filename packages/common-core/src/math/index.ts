@@ -1,0 +1,9 @@
+export { clamp } from './clamp';
+export { inRange } from './inRange';
+export { mean } from './mean';
+export { meanBy } from './meanBy';
+export { random } from './random';
+export { randomInt } from './randomInt';
+export { round } from './round';
+export { sum } from './sum';
+export { range } from './range';

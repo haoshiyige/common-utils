@@ -1,0 +1,10 @@
+# 忽略以下文件及文件夹
+build
+dist
+src/assets
+config/*
+public/*
+scripts/*
+# .eslintrc.js
+*.d.ts
+node_modules

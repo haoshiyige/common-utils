@@ -1,0 +1,37 @@
+{
+  "name": "@nin/common-core",
+  "version": "1.0.1",
+  "description": "@nin/common-core",
+  "main": "index.js",
+  "module": "dist/common-core.esm-bundler.js",
+  "types": "dist/common-core.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "buildOptions": {
+    "name": "NinCommon",
+    "compat": true,
+    "formats": [
+      "esm-bundler",
+      "cjs"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs/core.git",
+    "directory": "packages/common-core"
+  },
+  "keywords": [
+    "nin"
+  ],
+  "author": "Evan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vuejs/core/issues"
+  },
+  "homepage": "https://github.com/vuejs/core/tree/main/packages/compiler-core#readme",
+  "dependencies": {
+    "@nin/shared": "workspace:^"
+  }
+}

@@ -1,0 +1,10 @@
+# 文件包管理区
+prefer-workspace-packages: true
+
+packages:
+  # 选择 packages 目录下的所有首层子目录的包
+  - 'packages/*'
+  # 选择 apps 目录下的所有首层子目录的包
+  - 'apps/*'
+  # 排除所有包含 test 的包
+  - '!**/test/**'

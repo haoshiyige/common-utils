@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./dist/common-core.global.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3"></script> -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Mock.js/1.0.0/mock-min.js"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
+    <style>
+      .item {
+        border: 1px solid #a2eef3;
+        margin-top: 10px;
+        border-radius: 5px;
+        padding: 0 10px;
+      }
+      .item:hover {
+        background-color: #205bef;
+        color: azure;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div style="height: 500px; overflow-y: auto; padding: 20px">
+        <el-input type="text" v-model="searchValue" @input="handlerFunct"></el-input>
+        <div v-for="(item,index) of arr" :key="item.key" class="item">
+          <span>{{index + 1 }}</span> -- <span v-html="item.label"></span>
+        </div>
+      </div>
+      <!-- <el-select v-model="searchValue" placeholder="Select" size="large" style="width: 240px">
+        <el-option v-for="item of arr" :key="item.value" :label="item.label" :value="item.value" />
+      </el-select> -->
+    </div>
+  </body>
+</html>
+
+<script>
+  const { AlgorithmUtils, EnumFactory, StringsUtils, enumStore } = NinCommon
+  console.log('🚀 ~ EnumStore:', enumStore)
+  const { ref, createApp } = Vue
+  const aaaaaa = Mock.mock({
+    'data|100': [
+      //生成6条数据 数组
+      {
+        'id|+1': 1, //生成商品id，自增1
+        'shopId|+1': 1, //生成商品id，自增1
+        shopMsg: '@ctitle(10)', //生成商品信息，长度为10个汉字
+        shopName: '@cname', //生成商品名 ， 都是中国人的名字
+        shopTel: /^1(5|3|7|8)[0-9]{9}$/, //生成随机电话号
+        shopAddress: '@county(true)', //随机生成地址
+        'shopStar|1-5': '★', //随机生成1-5个星星
+        'salesVolume|30-1000': 30, //随机生成商品价格 在30-1000之间
+        shopLogo: "@Image('100x40','#c33', '#ffffff','小北鼻')", //生成随机图片，大小/背景色/字体颜色/文字信息
+        'food|2': [
+          //每个商品中再随机生成2个food
+          {
+            foodName: '@cname', //food的名字
+            foodPic: "@Image('100x40','#c33', '#ffffff','小可爱')", //生成随机图片，大小/背景色/字体颜色/文字信息
+            'foodPrice|1-100': 20, //生成1-100的随机数
+            'aname|2': [
+              {
+                aname: '@cname',
+                'aprice|30-60': 20
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  })
+  const arrEnum = new EnumFactory('name', aaaaaa.data, {
+    key: 'id',
+    labelKeys: item => {
+      return item.shopName + '-' + item.shopMsg
+    },
+    valueKeys: item => {
+      return item.shopName
+    }
+  })
+  for (let index = 0; index < 100; index++) {
+    new EnumFactory('name' + index, aaaaaa.data, {
+      key: 'id',
+      labelKeys: item => {
+        return item.shopName + '-' + item.shopMsg
+      },
+      valueKeys: item => {
+        return item.shopName
+      }
+    })
+  }
+  const app = createApp({
+    setup() {
+      console.log(',,,,,,,,,,,,,,,,', enumStore.get('name'))
+      const arr = ref(enumStore.get('name').disposedList)
+      console.log('🚀 ~ setup ~ arr:', arr)
+      const searchValue = ref('')
+      function handlerFunct() {
+        const fff = arrEnum.searchByTextWithHighlight(searchValue.value)
+        console.log('🚀 ~ handlerFunct ~ fff:', fff)
+        arr.value = fff;
+        if (searchValue.value == '') {
+          arr.value = arrEnum.disposedList
+        }
+        console.log('🚀 ~ setup ~ arrEnum:', arrEnum.paginate({ pageNum: 1, pageSize: 10 }))
+      }
+      return {
+        arr,
+        searchValue,
+        handlerFunct
+      }
+    }
+  })
+  app.use(ElementPlus).mount('#app')
+</script>

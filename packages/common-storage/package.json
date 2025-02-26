@@ -1,0 +1,31 @@
+{
+  "name": "@nin/storage-utils",
+  "version": "1.0.1",
+  "description": "@nin/storage-utils",
+  "main": "index.js",
+  "module": "dist/storage-utils.esm-bundler.js",
+  "types": "dist/storage-utils.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "buildOptions": {
+    "name": "NinStorage",
+    "compat": true,
+    "formats": [
+      "esm-bundler",
+      "cjs"
+    ]
+  },
+  "keywords": [
+    "nin"
+  ],
+  "homepage": "https://github.com/vuejs/core/tree/main/packages/compiler-core#readme",
+  "dependencies": {
+    "@nin/common-core": "workspace:^",
+    "@nin/shared": "workspace:^",
+    "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.13",
+    "localforage": "^1.10.0"
+  }
+}
